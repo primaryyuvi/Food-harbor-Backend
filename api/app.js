@@ -21,6 +21,10 @@ app.get('/api/token', (req, res) => {
     }
 });
 
+app.get("/api", (req, res) => {
+    res.status(200).json({ message: "For Testing" });
+  });
+
 
 app.listen(process.env.port || 3000, () => {
     console.log('Server is running');
