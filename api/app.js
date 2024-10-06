@@ -1,13 +1,17 @@
 const StreamChat = require('stream-chat').StreamChat;
+const bodyParser = require("body-parser");
+const cors = require('cors');
 const express = require('express');
 const app = express();
+app.use(bodyParser.json());
+app.use(cors());
 
 
-const api_key = 'z8h2jx7usf5f'
-const api_secret = 'yaedepp6e5d9xrnpcm5v3s478bcs34pazryucfyy8y7egsmtfk4hf8zxauzck4mk'
+const api_key = process.env.API_KEY
+const api_secret = process.env.API_SECRET
 
 
-app.get('/token', (req, res) => {
+app.get('/api/token', (req, res) => {
     if(req.query.user_id) {
         const client = new StreamChat(api_key, api_secret);
         const token = client.createToken(req.query.user_id);
